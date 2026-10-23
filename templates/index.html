@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Weather – best time for your plans, in any city or village</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body data-sky="cloud">
+  <header>
+    <h1>Weather</h1>
+    <form id="search" role="search">
+      <input id="city" type="text" placeholder="City, town or village" aria-label="City" autocomplete="off">
+      <button type="submit">Search</button>
+      <button type="button" id="locate">Use my location</button>
+      <button type="button" id="unit" aria-label="Switch units">°C</button>
+    </form>
+    <ul id="results" hidden></ul>
+  </header>
+
+  <main>
+    <p id="status" role="status">Search a city or village to see your best window of the day.</p>
+
+    <section id="now" hidden>
+      <div class="icon" id="icon"></div>
+      <div>
+        <h2 id="place"></h2>
+        <p class="big"><span id="temp"></span> <span id="desc"></span></p>
+        <p id="meta"></p>
+        <p id="rain"></p>
+        <p id="sun"></p>
+      </div>
+    </section>
+
+    <section id="planner" hidden>
+      <h2>When should I…</h2>
+      <div id="tabs" role="tablist"></div>
+      <p id="verdict"></p>
+      <div id="timeline" aria-label="Hour-by-hour score for the next 24 hours"></div>
+      <div id="ticks"></div>
+      <p class="hint">Taller, greener bars mean better conditions. The outlined hours are your best two-hour window.</p>
+    </section>
+
+    <section id="farm" hidden>
+      <h2>Farm and village advisor</h2>
+      <div id="farmstats"></div>
+      <ul id="tips"></ul>
+    </section>
+
+    <section id="wear" hidden>
+      <h2>What to wear</h2>
+      <p id="outfit"></p>
+    </section>
+
+    <section id="week" hidden>
+      <h2>Next 7 days</h2>
+      <ul id="daily"></ul>
+    </section>
+  </main>
+
+  <footer>Data by Open-Meteo. Scores are estimates, not safety advice.</footer>
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
