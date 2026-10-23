@@ -1,0 +1,68 @@
+:root {
+  --bg: #e9eef1; --panel: #f7f9fa; --ink: #16222c; --muted: #5b6b78;
+  --good: #0f8f7c; --ok: #d9a21b; --bad: #cf503b; --line: #c9d3da;
+  --radius: 14px;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #11181e; --panel: #1a232b; --ink: #e8eef2; --muted: #93a3af; --line: #2c3a45; }
+}
+@media (prefers-color-scheme: light) {
+  body[data-sky="clear"] { --bg: #e6f0f7; }
+  body[data-sky="rain"], body[data-sky="storm"] { --bg: #dde3e9; }
+  body[data-sky="snow"] { --bg: #eef2f6; }
+  body[data-sky="fog"] { --bg: #e4e6e6; }
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 400 1rem/1.5 "Source Sans 3", system-ui, sans-serif; transition: background .4s; }
+h1, h2, .big { font-family: "Bricolage Grotesque", system-ui, sans-serif; margin: 0; }
+h1 { font-size: 1.6rem; }
+header, main, footer { max-width: 860px; margin: 0 auto; padding: 1rem; }
+header { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; justify-content: space-between; }
+form { display: flex; flex-wrap: wrap; gap: .5rem; }
+input, button { font: inherit; padding: .55rem .8rem; border-radius: 10px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); }
+button { cursor: pointer; }
+button:hover { border-color: var(--ink); }
+:focus-visible { outline: 3px solid var(--good); outline-offset: 2px; }
+button[type=submit] { background: var(--ink); color: var(--bg); }
+
+section { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.25rem; margin-bottom: 1rem; }
+section[hidden] { display: none; }
+h2 { font-size: 1.15rem; margin-bottom: .5rem; }
+#status.error { color: var(--bad); }
+
+#now { display: flex; gap: 1.25rem; align-items: center; }
+.icon { font-size: 4rem; line-height: 1; }
+.big { font-size: 2.4rem; font-weight: 700; }
+.big #desc { font-size: 1.1rem; font-weight: 500; color: var(--muted); }
+#meta, .hint { color: var(--muted); margin: 0; }
+
+#tabs { display: flex; flex-wrap: wrap; gap: .4rem; margin: .5rem 0 1rem; }
+#tabs button[aria-selected=true] { background: var(--ink); color: var(--bg); }
+#verdict { font-size: 1.1rem; font-weight: 600; margin: 0 0 1rem; }
+
+#timeline { display: grid; grid-template-columns: repeat(24, 1fr); gap: 3px; align-items: end; height: 150px; }
+#timeline .bar { border-radius: 4px 4px 0 0; min-height: 4px; transition: height .35s; }
+#timeline .bar.best { outline: 2px solid var(--ink); outline-offset: 1px; }
+#ticks { display: grid; grid-template-columns: repeat(24, 1fr); gap: 3px; font-size: .7rem; color: var(--muted); margin: .35rem 0 .75rem; }
+#ticks span { white-space: nowrap; }
+
+#daily { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(105px, 1fr)); gap: .6rem; }
+#daily li { border: 1px solid var(--line); border-radius: 10px; padding: .6rem; text-align: center; }
+#daily .day { font-weight: 600; } #daily .ic { font-size: 1.8rem; } #daily .rain { color: var(--muted); font-size: .85rem; }
+
+footer { color: var(--muted); font-size: .85rem; text-align: center; }
+@media (max-width: 520px) { #now { flex-direction: column; text-align: center; } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+#results { flex-basis: 100%; list-style: none; margin: 0; padding: 0; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); overflow: hidden; }
+#results[hidden] { display: none; }
+#results button { width: 100%; text-align: left; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; }
+#results span { color: var(--muted); font-size: .9rem; }
+#rain { font-weight: 600; margin: .25rem 0 0; }
+#sun { margin: 0; color: var(--muted); }
+#farmstats { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: .6rem; margin-bottom: .75rem; }
+#farmstats div { border: 1px solid var(--line); border-radius: 10px; padding: .6rem; text-align: center; }
+#farmstats b { display: block; font: 700 1.3rem "Bricolage Grotesque", system-ui, sans-serif; }
+#farmstats span { color: var(--muted); font-size: .85rem; }
+#tips { margin: 0; padding-left: 1.2rem; }
